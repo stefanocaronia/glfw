@@ -3,8 +3,14 @@ project "GLFW"
     language "c"
     toolset "gcc"
 
-	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
-    objdir ("obj/" .. outputdir .. "/%{prj.name}")
+    configuration { "gmake2" }
+        targetextension (".a")
+
+	-- targetdir ("bin/" .. outputdir .. "/%{prj.name}")
+    -- objdir ("obj/" .. outputdir .. "/%{prj.name}")
+
+    targetdir ("lib")
+    objdir ("obj")
 
     makesettings [[
         CC = gcc
@@ -23,8 +29,12 @@ project "GLFW"
         "src/window.c"
     }
 
+    links {
+        "gdi32"
+    }
+
 	filter "system:windows"
-        buildoptions { "-std=c11", "-lgdi32" }
+        buildoptions { "-std=c11" }
         systemversion "latest"
         staticruntime "on"
         toolset "gcc"

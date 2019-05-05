@@ -1,5 +1,6 @@
 bin/
 obj/
+lib/
 
 # External junk
 .DS_Store
